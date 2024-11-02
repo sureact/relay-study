@@ -33,36 +33,50 @@ export default function PosterDetailsHovercardContents({
   );
 }
 
-const PosterDetailsHovercardContentsBodyFragment = graphql`
-  fragment PosterDetailsHovercardContentsBodyFragment on Actor {
-    id
-    name
-    joined
-    profilePicture {
-      ...ImageFragment
-    }
-  }
-`;
-
 function PosterDetailsHovercardContentsBody({
   poster,
 }: {
   poster: PosterDetailsHovercardContentsBodyFragment$key;
 }) {
-  const data = useFragment(PosterDetailsHovercardContentsBodyFragment, poster);
+  const actor = useFragment(
+    graphql`
+      fragment PosterDetailsHovercardContentsBodyFragment on Actor {
+        id
+        name
+        joined
+        profilePicture {
+          ...ImageFragment
+        }
+        ... on Organization {
+          organizationKind
+        }
+        ... on Person {
+          location {
+            name
+          }
+        }
+      }
+    `,
+    poster
+  );
+
   return (
     <>
       <Image
-        imageRef={data.profilePicture}
+        imageRef={actor.profilePicture}
         width={128}
         height={128}
         className="posterHovercard__image"
       />
-      <div className="posterHovercard__name">{data.name}</div>
+      <div className="posterHovercard__name">{actor.name}</div>
       <ul className="posterHovercard__details">
         <li>
-          Joined <Timestamp time={data.joined} />
+          Joined <Timestamp time={actor.joined} />
         </li>
+        {actor.location && <li>{actor.location.name}</li>}
+        {actor.organizationKind && (
+          <li>Organization Kind={actor.organizationKind}</li>
+        )}
       </ul>
       <div className="posterHovercard__buttons">
         <button>Friend</button>
