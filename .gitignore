@@ -1,1 +1,4 @@
-dist
+.DS_*
+.idea
+
+node_modules
