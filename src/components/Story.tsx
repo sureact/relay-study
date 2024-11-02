@@ -9,26 +9,27 @@ import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
 import { StoryFragment$key } from "./__generated__/StoryFragment.graphql";
 
-const StoryFragment = graphql`
-  fragment StoryFragment on Story {
-    title
-    summary
-    createdAt
-    poster {
-      ...PosterBylineFragment
-    }
-    thumbnail {
-      ...ImageFragment
-    }
-  }
-`;
-
 type Props = {
   story: StoryFragment$key;
 };
 
 export default function Story({ story }: Props): React.ReactElement {
-  const data = useFragment(StoryFragment, story);
+  const data = useFragment(
+    graphql`
+      fragment StoryFragment on Story {
+        title
+        summary
+        createdAt
+        poster {
+          ...PosterBylineFragment
+        }
+        thumbnail {
+          ...ImageFragment
+        }
+      }
+    `,
+    story
+  );
 
   return (
     <Card>

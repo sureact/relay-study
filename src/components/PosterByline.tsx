@@ -4,21 +4,22 @@ import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
 import { PosterBylineFragment$key } from "./__generated__/PosterBylineFragment.graphql";
 
-const PosterBylineFragment = graphql`
-  fragment PosterBylineFragment on Actor {
-    name
-    profilePicture {
-      ...ImageFragment
-    }
-  }
-`;
-
 export type Props = {
   poster: PosterBylineFragment$key;
 };
 
 export default function PosterByline({ poster }: Props): React.ReactElement {
-  const data = useFragment(PosterBylineFragment, poster);
+  const data = useFragment(
+    graphql`
+      fragment PosterBylineFragment on Actor {
+        name
+        profilePicture {
+          ...ImageFragment
+        }
+      }
+    `,
+    poster
+  );
 
   return (
     <div className="byline">
