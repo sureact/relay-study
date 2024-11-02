@@ -15,6 +15,7 @@ export default function PosterByline({ posterRef }: Props): React.ReactElement {
   const actor = useFragment(
     graphql`
       fragment PosterBylineFragment on Actor {
+        id
         name
         profilePicture {
           ...ImageFragment @arguments(width: 60, height: 60)
@@ -35,7 +36,7 @@ export default function PosterByline({ posterRef }: Props): React.ReactElement {
       />
       <div className="byline__name">{actor.name}</div>
       <Hovercard targetRef={hoverRef}>
-        <PosterDetailsHovercardContents />
+        <PosterDetailsHovercardContents posterID={actor.id} />
       </Hovercard>
     </div>
   );

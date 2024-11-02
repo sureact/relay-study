@@ -7,18 +7,22 @@ import Timestamp from "./Timestamp";
 import type { PosterDetailsHovercardContentsQuery as QueryType } from "./__generated__/PosterDetailsHovercardContentsQuery.graphql";
 import type { PosterDetailsHovercardContentsBodyFragment$key } from "./__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
 
-export default function PosterDetailsHovercardContents({}: {}): React.ReactElement {
+export default function PosterDetailsHovercardContents({
+  posterID,
+}: {
+  posterID: string;
+}): React.ReactElement {
   const data = useLazyLoadQuery<QueryType>(
     graphql`
-      query PosterDetailsHovercardContentsQuery {
-        node(id: "1") {
+      query PosterDetailsHovercardContentsQuery($posterID: ID!) {
+        node(id: $posterID) {
           ... on Actor {
             ...PosterDetailsHovercardContentsBodyFragment
           }
         }
       }
     `,
-    {}
+    { posterID }
   );
   return (
     <div className="posterHovercard">
