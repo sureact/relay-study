@@ -23,7 +23,7 @@ export default function ContactRow({ contact }: Props): React.ReactElement {
   return (
     <div className="contactRow">
       <Image
-        image={data.profilePicture}
+        imageRef={data.profilePicture}
         width={60}
         height={60}
         className="contactRow__image"

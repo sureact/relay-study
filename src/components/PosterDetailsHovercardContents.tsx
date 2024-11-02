@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLazyLoadQuery, useFragment } from "react-relay";
+import { useFragment, useLazyLoadQuery } from "react-relay";
 import { graphql } from "relay-runtime";
 import Image from "./Image";
 import Timestamp from "./Timestamp";
@@ -49,7 +49,7 @@ function PosterDetailsHovercardContentsBody({
   return (
     <>
       <Image
-        image={data.profilePicture}
+        imageRef={data.profilePicture}
         width={128}
         height={128}
         className="posterHovercard__image"
