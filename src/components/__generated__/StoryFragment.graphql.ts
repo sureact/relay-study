@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e80c5083d05b99432ef33b58c37e5dce>>
+ * @generated SignedSource<<1a9fc53fcf49892b64ba9917815a23e5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,14 +13,11 @@ import { FragmentRefs } from "relay-runtime";
 export type StoryFragment$data = {
   readonly createdAt: string;
   readonly poster: {
-    readonly name: string | null;
-    readonly profilePicture: {
-      readonly url: string;
-    } | null;
+    readonly " $fragmentSpreads": FragmentRefs<"PosterBylineFragment">;
   };
   readonly summary: string | null;
   readonly thumbnail: {
-    readonly url: string;
+    readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
   } | null;
   readonly title: string;
   readonly " $fragmentType": "StoryFragment";
@@ -30,17 +27,7 @@ export type StoryFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"StoryFragment">;
 };
 
-const node: ReaderFragment = (function(){
-var v0 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "url",
-    "storageKey": null
-  }
-];
-return {
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -76,21 +63,9 @@ return {
       "plural": false,
       "selections": [
         {
-          "alias": null,
           "args": null,
-          "kind": "ScalarField",
-          "name": "name",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "Image",
-          "kind": "LinkedField",
-          "name": "profilePicture",
-          "plural": false,
-          "selections": (v0/*: any*/),
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "PosterBylineFragment"
         }
       ],
       "storageKey": null
@@ -102,15 +77,20 @@ return {
       "kind": "LinkedField",
       "name": "thumbnail",
       "plural": false,
-      "selections": (v0/*: any*/),
+      "selections": [
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "ImageFragment"
+        }
+      ],
       "storageKey": null
     }
   ],
   "type": "Story",
   "abstractKey": null
 };
-})();
 
-(node as any).hash = "8922fad08d91d16749ea83970500766c";
+(node as any).hash = "9b1a530f4e4f366001eff1f82d6e3e8f";
 
 export default node;
