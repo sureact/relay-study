@@ -4,33 +4,33 @@ import { ImageFragment$key } from "./__generated__/ImageFragment.graphql";
 import { useFragment } from "react-relay";
 
 type Props = {
-  image: ImageFragment$key;
+  imageRef: ImageFragment$key;
   width?: number;
   height?: number;
   className?: string;
 };
 
 export default function Image({
-  image,
+  imageRef,
   width,
   height,
   className,
 }: Props): React.ReactElement {
-  const data = useFragment(
+  const image = useFragment(
     graphql`
       fragment ImageFragment on Image {
         url
         altText
       }
     `,
-    image
+    imageRef
   );
 
   return (
     <img
-      key={data.url}
-      src={data.url}
-      alt={data.altText}
+      key={image.url}
+      src={image.url}
+      alt={image.altText}
       width={width}
       height={height}
       className={className}

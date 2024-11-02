@@ -10,11 +10,11 @@ import { useFragment } from "react-relay";
 import { StoryFragment$key } from "./__generated__/StoryFragment.graphql";
 
 type Props = {
-  story: StoryFragment$key;
+  storyRef: StoryFragment$key;
 };
 
-export default function Story({ story }: Props): React.ReactElement {
-  const data = useFragment(
+export default function Story({ storyRef }: Props): React.ReactElement {
+  const story = useFragment(
     graphql`
       fragment StoryFragment on Story {
         title
@@ -28,16 +28,16 @@ export default function Story({ story }: Props): React.ReactElement {
         }
       }
     `,
-    story
+    storyRef
   );
 
   return (
     <Card>
-      <PosterByline poster={data.poster} />
-      <Heading>{data.title}</Heading>
-      <Timestamp time={data.createdAt} />
-      <Image image={data.thumbnail} width={400} height={400} />
-      <StorySummary summary={data.summary} />
+      <PosterByline posterRef={story.poster} />
+      <Heading>{story.title}</Heading>
+      <Timestamp time={story.createdAt} />
+      <Image imageRef={story.thumbnail} width={400} height={400} />
+      <StorySummary summary={story.summary} />
     </Card>
   );
 }

@@ -5,7 +5,7 @@ import { useLazyLoadQuery } from "react-relay";
 import type { NewsfeedQuery } from "./__generated__/NewsfeedQuery.graphql";
 
 export default function Newsfeed() {
-  const data = useLazyLoadQuery<NewsfeedQuery>(
+  const query = useLazyLoadQuery<NewsfeedQuery>(
     graphql`
       query NewsfeedQuery {
         topStory {
@@ -16,11 +16,11 @@ export default function Newsfeed() {
     {}
   );
 
-  const story = data.topStory;
+  const story = query.topStory;
 
   return (
     <div className="newsfeed">
-      <Story story={story} />
+      <Story storyRef={story} />
     </div>
   );
 }
