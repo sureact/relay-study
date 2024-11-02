@@ -6,15 +6,6 @@ import type { SidebarQuery as SidebarQueryType } from "./__generated__/SidebarQu
 import ViewerProfile from "./ViewerProfile";
 import ContactsList from "./ContactsList";
 
-const SidebarQuery = graphql`
-  query SidebarQuery {
-    viewer {
-      ...ViewerProfileFragment
-      ...ContactsListFragment
-    }
-  }
-`;
-
 export default function Sidebar() {
   return (
     <div className="sidebar">
@@ -26,7 +17,17 @@ export default function Sidebar() {
 }
 
 function SidebarContents() {
-  const data = useLazyLoadQuery<SidebarQueryType>(SidebarQuery, {});
+  const data = useLazyLoadQuery<SidebarQueryType>(
+    graphql`
+      query SidebarQuery {
+        viewer {
+          ...ViewerProfileFragment
+          ...ContactsListFragment
+        }
+      }
+    `,
+    {}
+  );
   return (
     <>
       <ViewerProfile viewer={data.viewer} />
