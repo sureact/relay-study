@@ -14,7 +14,7 @@ export default function PosterByline({ posterRef }: Props): React.ReactElement {
       fragment PosterBylineFragment on Actor {
         name
         profilePicture {
-          ...ImageFragment
+          ...ImageFragment @arguments(width: 60, height: 60)
         }
       }
     `,

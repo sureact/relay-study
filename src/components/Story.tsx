@@ -24,7 +24,7 @@ export default function Story({ storyRef }: Props): React.ReactElement {
           ...PosterBylineFragment
         }
         thumbnail {
-          ...ImageFragment
+          ...ImageFragment @arguments(width: 400)
         }
       }
     `,

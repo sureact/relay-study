@@ -18,8 +18,12 @@ export default function Image({
 }: Props): React.ReactElement {
   const image = useFragment(
     graphql`
-      fragment ImageFragment on Image {
-        url
+      fragment ImageFragment on Image
+      @argumentDefinitions(
+        width: { type: "Int", defaultValue: null }
+        height: { type: "Int", defaultValue: null }
+      ) {
+        url(width: $width, height: $height)
         altText
       }
     `,
