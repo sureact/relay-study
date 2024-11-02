@@ -10,6 +10,7 @@ export default function Newsfeed() {
           topStory {
               title
               summary
+              createdAt
               poster {
                   name
                   profilePicture {

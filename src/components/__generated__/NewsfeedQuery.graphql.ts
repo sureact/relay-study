@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<60c57060f6fad1461cc1c4a1662703bf>>
+ * @generated SignedSource<<86a3f259202eafd8cca984f27b7ea51b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,7 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type NewsfeedQuery$variables = {};
 export type NewsfeedQuery$data = {
   readonly topStory: {
+    readonly createdAt: string;
     readonly poster: {
       readonly name: string | null;
       readonly profilePicture: {
@@ -49,10 +50,17 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "createdAt",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v3 = [
+v4 = [
   {
     "alias": null,
     "args": null,
@@ -61,27 +69,27 @@ v3 = [
     "storageKey": null
   }
 ],
-v4 = {
+v5 = {
   "alias": null,
   "args": null,
   "concreteType": "Image",
   "kind": "LinkedField",
   "name": "profilePicture",
   "plural": false,
-  "selections": (v3/*: any*/),
+  "selections": (v4/*: any*/),
   "storageKey": null
 },
-v5 = {
+v6 = {
   "alias": null,
   "args": null,
   "concreteType": "Image",
   "kind": "LinkedField",
   "name": "thumbnail",
   "plural": false,
-  "selections": (v3/*: any*/),
+  "selections": (v4/*: any*/),
   "storageKey": null
 },
-v6 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -105,6 +113,7 @@ return {
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -113,12 +122,12 @@ return {
             "name": "poster",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
-              (v4/*: any*/)
+              (v3/*: any*/),
+              (v5/*: any*/)
             ],
             "storageKey": null
           },
-          (v5/*: any*/)
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
@@ -142,6 +151,7 @@ return {
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -157,30 +167,30 @@ return {
                 "name": "__typename",
                 "storageKey": null
               },
-              (v2/*: any*/),
-              (v4/*: any*/),
-              (v6/*: any*/)
+              (v3/*: any*/),
+              (v5/*: any*/),
+              (v7/*: any*/)
             ],
             "storageKey": null
           },
-          (v5/*: any*/),
-          (v6/*: any*/)
+          (v6/*: any*/),
+          (v7/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "ed145403db84d192c3f2f44eaa9bc6f9",
+    "cacheID": "20cd1b9e33128f2678b6b868c87d8d22",
     "id": null,
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  topStory {\n    title\n    summary\n    poster {\n      __typename\n      name\n      profilePicture {\n        url\n      }\n      id\n    }\n    thumbnail {\n      url\n    }\n    id\n  }\n}\n"
+    "text": "query NewsfeedQuery {\n  topStory {\n    title\n    summary\n    createdAt\n    poster {\n      __typename\n      name\n      profilePicture {\n        url\n      }\n      id\n    }\n    thumbnail {\n      url\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a9fcda7f535317fb43f6861ecfe58e77";
+(node as any).hash = "8a790a2e84e335ce673cc81f930a99df";
 
 export default node;
